@@ -1,5 +1,9 @@
 FROM node:16-alpine3.15 as js-builder
+<<<<<<< HEAD
 echo Linux Open Source Software Technologies
+=======
+echo Linux hueta
+>>>>>>> 452d21f0d0d2bcc94bb21ce5747afcc941d9d155
 ENV NODE_OPTIONS=--max_old_space_size=8000
 
 WORKDIR /grafana
