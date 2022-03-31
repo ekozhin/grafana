@@ -24,7 +24,11 @@ export const validatePluginJson = (pluginJson: any) => {
   }
 };
 
+<<<<<<< HEAD
 export const getPluginJson = (path: string): PluginMeta => {
+=======
+export const getPluginJson = (path: string): PluginJSONSchema => {
+>>>>>>> test
   let pluginJson;
   try {
     pluginJson = require(path);

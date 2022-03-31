@@ -2,5 +2,9 @@
   "npmClient": "yarn",
   "useWorkspaces": true,
   "packages": ["packages/*"],
+<<<<<<< HEAD
   "version": "8.5.0-pre"
+=======
+  "version": "6.3.0-alpha.40"
+>>>>>>> test
 }

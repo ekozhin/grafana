@@ -12,9 +12,19 @@ import { pluginTestTask } from './tasks/plugin.tests';
 import { searchTestDataSetupTask } from './tasks/searchTestDataSetup';
 import { closeMilestoneTask } from './tasks/closeMilestone';
 import { pluginDevTask } from './tasks/plugin.dev';
+<<<<<<< HEAD
 import { getToolkitVersion, githubPublishTask } from './tasks/plugin.utils';
 import { pluginUpdateTask } from './tasks/plugin.update';
 import { ciBuildPluginTask, ciPackagePluginTask, ciPluginReportTask } from './tasks/plugin.ci';
+=======
+import {
+  ciBuildPluginTask,
+  ciBundlePluginTask,
+  ciTestPluginTask,
+  ciDeployPluginTask,
+  ciSetupPluginTask,
+} from './tasks/plugin.ci';
+>>>>>>> test
 import { buildPackageTask } from './tasks/package.build';
 import { pluginCreateTask } from './tasks/plugin.create';
 import { pluginSignTask } from './tasks/plugin.sign';
@@ -235,6 +245,7 @@ export const run = (includeInternalScripts = false) => {
     });
 
   program
+<<<<<<< HEAD
     .command('plugin:ci-package')
     .option('--signatureType <type>', 'Signature Type')
     .option('--rootUrls <urls...>', 'Root URLs')
@@ -244,10 +255,19 @@ export const run = (includeInternalScripts = false) => {
       await execTask(ciPackagePluginTask)({
         signatureType: cmd.signatureType,
         rootUrls: cmd.rootUrls,
+=======
+    .command('plugin:ci-build')
+    .option('--platform <platform>', 'For backend task, which backend to run')
+    .description('Build the plugin, leaving artifacts in /dist')
+    .action(async cmd => {
+      await execTask(ciBuildPluginTask)({
+        platform: cmd.platform,
+>>>>>>> test
       });
     });
 
   program
+<<<<<<< HEAD
     .command('plugin:ci-report')
     .description('[deprecated] Build a report for this whole process')
     .option('--upload', 'upload packages also')
@@ -275,14 +295,44 @@ export const run = (includeInternalScripts = false) => {
         dryrun: cmd.dryrun,
         verbose: cmd.verbose,
         commitHash: cmd.commitHash,
+=======
+    .command('plugin:ci-bundle')
+    .description('Create a zip artifact for the plugin')
+    .action(async cmd => {
+      await execTask(ciBundlePluginTask)({});
+    });
+
+  program
+    .command('plugin:ci-setup')
+    .option('--installer <installer>', 'Name of installer to download and run')
+    .description('Install and configure grafana')
+    .action(async cmd => {
+      await execTask(ciSetupPluginTask)({
+        installer: cmd.installer,
+      });
+    });
+  program
+    .command('plugin:ci-test')
+    .description('end-to-end test using bundle in /artifacts')
+    .action(async cmd => {
+      await execTask(ciTestPluginTask)({
+        platform: cmd.platform,
+>>>>>>> test
       });
     });
 
   program
+<<<<<<< HEAD
     .command('plugin:update-circleci')
     .description('Update plugin')
     .action(async (cmd) => {
       await execTask(pluginUpdateTask)({});
+=======
+    .command('plugin:ci-deploy')
+    .description('Publish plugin CI results')
+    .action(async cmd => {
+      await execTask(ciDeployPluginTask)({});
+>>>>>>> test
     });
 
   program.on('command:*', () => {

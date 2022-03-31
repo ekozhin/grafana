@@ -7,6 +7,7 @@
   "repository": "github:grafana/grafana",
   "scripts": {
     "api-tests": "jest --notify --watch --config=devenv/e2e-api-tests/jest.js",
+<<<<<<< HEAD
     "build": "yarn i18n:compile && NODE_ENV=production webpack --config scripts/webpack/webpack.prod.js",
     "build:nominify": "yarn run build --env noMinify=1",
     "dev": "yarn i18n:compile && webpack --progress --color --config scripts/webpack/webpack.dev.js",
@@ -55,6 +56,17 @@
     "i18n:compile": "lingui compile",
     "postinstall": "husky install",
     "betterer": "betterer"
+=======
+    "storybook": "cd packages/grafana-ui && yarn storybook",
+    "storybook:build": "cd packages/grafana-ui && yarn storybook:build",
+    "prettier:check": "prettier --list-different \"**/*.{ts,tsx,scss}\"",
+    "prettier:write": "prettier --list-different \"**/*.{ts,tsx,scss}\" --write",
+    "precommit": "grafana-toolkit precommit",
+    "themes:generate": "ts-node --project ./scripts/cli/tsconfig.json ./scripts/cli/generateSassVariableFiles.ts",
+    "packages:prepare": "lerna run clean && npm run test && lerna version --tag-version-prefix=\"packages@\" -m \"Packages: publish %s\" --no-push",
+    "packages:build": "lerna run clean && lerna run build",
+    "packages:publish": "lerna publish from-package --contents dist --dist-tag next --tag-version-prefix=\"packages@\""
+>>>>>>> test
   },
   "grafana": {
     "whatsNewUrl": "https://grafana.com/docs/grafana/next/whatsnew/whats-new-in-v8-4/",

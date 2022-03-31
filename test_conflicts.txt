@@ -1,0 +1,23 @@
+ENV NODE_OPTIONS=--max_old_space_size=8000
+
+WORKDIR /grafana
+
+COPY package.json yarn.lock .yarnrc.yml ./
+COPY .yarn .yarn
+COPY packages packages
+COPY plugins-bundled plugins-bundled
+
+RUN yarn install
+
+COPY tsconfig.json .eslintrc .editorconfig .browserslistrc .prettierrc.js babel.config.json .linguirc ./
+COPY public public
+COPY tools tools
+COPY scripts scripts
+COPY emails emails
+
+ENV NODE_ENV production
+RUN yarn build
+
+FROM golang:1.17.8-alpine3.15 as go-builder
+
+RUN apk add --no-cache gcc g++ make
