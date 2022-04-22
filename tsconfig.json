@@ -1,5 +1,4 @@
 #json config
-#Linux Hueta
 {
   "compilerOptions": {
     "jsx": "react",
